@@ -58,10 +58,6 @@ func dumpList() string{
 	return retStr
 }
 
-func startHttp(){
-	http.ListenAndServe(":8080", nil)
-}
-
 var dataList *list.List
 
 func main (){
@@ -89,11 +85,10 @@ func main (){
 	go consumer(dataList, 3)
 	go consumer(dataList, 4)
 
-	go startHttp()
 
-	for{
-		time.Sleep(1)
-	}
+
+	http.ListenAndServe(":8080", nil)
+
 
 }
 

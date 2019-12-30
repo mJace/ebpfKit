@@ -1,0 +1,88 @@
+
+./main:     file format elf64-x86-64
+
+SYMBOL TABLE:
+0000000000000318 l    d  .interp	0000000000000000              .interp
+0000000000000338 l    d  .note.gnu.property	0000000000000000              .note.gnu.property
+0000000000000358 l    d  .note.gnu.build-id	0000000000000000              .note.gnu.build-id
+000000000000037c l    d  .note.ABI-tag	0000000000000000              .note.ABI-tag
+00000000000003a0 l    d  .gnu.hash	0000000000000000              .gnu.hash
+00000000000003c8 l    d  .dynsym	0000000000000000              .dynsym
+00000000000004b8 l    d  .dynstr	0000000000000000              .dynstr
+0000000000000564 l    d  .gnu.version	0000000000000000              .gnu.version
+0000000000000578 l    d  .gnu.version_r	0000000000000000              .gnu.version_r
+00000000000005a8 l    d  .rela.dyn	0000000000000000              .rela.dyn
+0000000000000668 l    d  .rela.plt	0000000000000000              .rela.plt
+0000000000001000 l    d  .init	0000000000000000              .init
+0000000000001020 l    d  .plt	0000000000000000              .plt
+0000000000001070 l    d  .plt.got	0000000000000000              .plt.got
+0000000000001080 l    d  .plt.sec	0000000000000000              .plt.sec
+00000000000010c0 l    d  .text	0000000000000000              .text
+0000000000001428 l    d  .fini	0000000000000000              .fini
+0000000000002000 l    d  .rodata	0000000000000000              .rodata
+0000000000002024 l    d  .eh_frame_hdr	0000000000000000              .eh_frame_hdr
+0000000000002080 l    d  .eh_frame	0000000000000000              .eh_frame
+0000000000003da0 l    d  .init_array	0000000000000000              .init_array
+0000000000003da8 l    d  .fini_array	0000000000000000              .fini_array
+0000000000003db0 l    d  .dynamic	0000000000000000              .dynamic
+0000000000003fa0 l    d  .got	0000000000000000              .got
+0000000000004000 l    d  .data	0000000000000000              .data
+0000000000004010 l    d  .bss	0000000000000000              .bss
+0000000000000000 l    d  .comment	0000000000000000              .comment
+0000000000000000 l    df *ABS*	0000000000000000              crtstuff.c
+00000000000010f0 l     F .text	0000000000000000              deregister_tm_clones
+0000000000001120 l     F .text	0000000000000000              register_tm_clones
+0000000000001160 l     F .text	0000000000000000              __do_global_dtors_aux
+0000000000004010 l     O .bss	0000000000000001              completed.8055
+0000000000003da8 l     O .fini_array	0000000000000000              __do_global_dtors_aux_fini_array_entry
+00000000000011a0 l     F .text	0000000000000000              frame_dummy
+0000000000003da0 l     O .init_array	0000000000000000              __frame_dummy_init_array_entry
+0000000000000000 l    df *ABS*	0000000000000000              main.c
+0000000000000000 l    df *ABS*	0000000000000000              crtstuff.c
+00000000000021e4 l     O .eh_frame	0000000000000000              __FRAME_END__
+0000000000000000 l    df *ABS*	0000000000000000              
+0000000000003da8 l       .init_array	0000000000000000              __init_array_end
+0000000000003db0 l     O .dynamic	0000000000000000              _DYNAMIC
+0000000000003da0 l       .init_array	0000000000000000              __init_array_start
+0000000000002024 l       .eh_frame_hdr	0000000000000000              __GNU_EH_FRAME_HDR
+0000000000003fa0 l     O .got	0000000000000000              _GLOBAL_OFFSET_TABLE_
+0000000000001000 l     F .init	0000000000000000              _init
+0000000000001420 g     F .text	0000000000000005              __libc_csu_fini
+0000000000000000       F *UND*	0000000000000000              free@@GLIBC_2.2.5
+0000000000000000  w      *UND*	0000000000000000              _ITM_deregisterTMCloneTable
+0000000000004000  w      .data	0000000000000000              data_start
+0000000000004010 g       .data	0000000000000000              _edata
+0000000000001428 g     F .fini	0000000000000000              .hidden _fini
+0000000000001293 g     F .text	000000000000004a              print_list
+0000000000000000       F *UND*	0000000000000000              __stack_chk_fail@@GLIBC_2.4
+0000000000000000       F *UND*	0000000000000000              printf@@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              __libc_start_main@@GLIBC_2.2.5
+0000000000004000 g       .data	0000000000000000              __data_start
+0000000000000000  w      *UND*	0000000000000000              __gmon_start__
+0000000000004008 g     O .data	0000000000000000              .hidden __dso_handle
+0000000000002000 g     O .rodata	0000000000000004              _IO_stdin_used
+00000000000011f9 g     F .text	000000000000009a              dequeue
+00000000000013b0 g     F .text	0000000000000065              __libc_csu_init
+0000000000000000       F *UND*	0000000000000000              malloc@@GLIBC_2.2.5
+0000000000004018 g       .bss	0000000000000000              _end
+00000000000010c0 g     F .text	000000000000002f              _start
+0000000000004010 g       .bss	0000000000000000              __bss_start
+00000000000012dd g     F .text	00000000000000d3              main
+0000000000004010 g     O .data	0000000000000000              .hidden __TMC_END__
+0000000000000000  w      *UND*	0000000000000000              _ITM_registerTMCloneTable
+00000000000011a9 g     F .text	0000000000000050              enqueue
+0000000000000000  w    F *UND*	0000000000000000              __cxa_finalize@@GLIBC_2.2.5
+
+
+DYNAMIC SYMBOL TABLE:
+0000000000000000      DF *UND*	0000000000000000  GLIBC_2.2.5 free
+0000000000000000  w   D  *UND*	0000000000000000              _ITM_deregisterTMCloneTable
+0000000000000000      DF *UND*	0000000000000000  GLIBC_2.4   __stack_chk_fail
+0000000000000000      DF *UND*	0000000000000000  GLIBC_2.2.5 printf
+0000000000000000      DF *UND*	0000000000000000  GLIBC_2.2.5 __libc_start_main
+0000000000000000  w   D  *UND*	0000000000000000              __gmon_start__
+0000000000000000      DF *UND*	0000000000000000  GLIBC_2.2.5 malloc
+0000000000000000  w   D  *UND*	0000000000000000              _ITM_registerTMCloneTable
+0000000000000000  w   DF *UND*	0000000000000000  GLIBC_2.2.5 __cxa_finalize
+
+

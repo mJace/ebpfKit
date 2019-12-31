@@ -1,32 +1,41 @@
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
 #include <stdio.h>
-#include <err.h>
 #include <time.h>
+#include <pthread.h>
 
 
 typedef struct node{
-  /* data */
   int val;
   struct node *next;
 }node_t;
 
-const maxQueue = 10;
+const int maxQueue = 10;
 
-void enqueue(node_t **head){
-  
+int queue_size(node_t *head) {
+  node_t *current = head;
+  int size = 0;
+  while (current != NULL) {
+    // printf("%d\n", current->val);
+    size++;
+    current = current->next;
+  }
+  return size;
+}
+
+void enqueue(node_t **head) {
+  if ( ( queue_size(*head) ) == maxQueue ) {
+    return;
+  }
   int r = rand()%100;
   node_t *new_node = malloc(sizeof(node_t));
   if (!new_node) {
     return;
   }
-
   new_node->val = r;
   new_node->next = *head;
   *head = new_node;
 }
-
 
 int dequeue(node_t **head) {
   node_t *current, *prev = NULL;
@@ -60,31 +69,48 @@ void print_list(node_t *head) {
   }
 }
 
+void *producer_func(void *input){
+
+  int r = rand()%5;
+  while (1){
+    enqueue((node_t **)input);
+    sleep(r);
+  }
+}
+
+void *consumer_func(void *input) {
+  int r = rand()%5;
+  while (1) {
+    dequeue((node_t **)input);
+    sleep(r);
+  }
+}
+
 node_t * head = NULL;
 
 
 int main() {
-  char response[] = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\nGoodbye, world~~~~~!\r\n";
-  long strSize = sizeof(response);
-  // node_t * head = NULL;
-  int ret;
 
   srand(time(NULL));
-  enqueue(&head);
-  enqueue(&head);
-  enqueue(&head);
-  enqueue(&head);
+  pthread_t producer_1, producer_2, producer_3, producer_4;
+  pthread_t consumer_1, consumer_2, consumer_3, consumer_4;
+
+  pthread_create(&producer_1, NULL, &producer_func, &head);
+  pthread_create(&producer_2, NULL, &producer_func, &head);
+  pthread_create(&producer_3, NULL, &producer_func, &head);
+  pthread_create(&producer_4, NULL, &producer_func, &head);
+
+  pthread_create(&consumer_1, NULL, &consumer_func, &head);
+  pthread_create(&consumer_2, NULL, &consumer_func, &head);
+  pthread_create(&consumer_3, NULL, &consumer_func, &head);
+  pthread_create(&consumer_4, NULL, &consumer_func, &head);
   
-  print_list(head);
 
-  // while ( (ret=dequeue(&head)) > 0 ) {
-  //   printf("dequeued %d\n", ret);
-  // }
-  // printf ("Done, head=%p\n",head);
-
-  int data = dequeue(&head);
-  printf("------\n");
-  printf("%d\n",data);
+  while( 1 ) {
+    print_list(head);
+    sleep(1);
+    printf("Queue size:%d\n",queue_size(head));
+  }
   
   return 0;
 }

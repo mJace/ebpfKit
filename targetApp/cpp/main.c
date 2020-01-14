@@ -4,11 +4,12 @@
 #include <time.h>
 #include <pthread.h>
 
-
 typedef struct node{
   int val;
   struct node *next;
 }node_t;
+
+pthread_mutex_t p_lock, c_lock;
 
 const int maxQueue = 10;
 
@@ -51,6 +52,7 @@ int dequeue(node_t **head) {
 
   retval = current-> val;
   free(current);
+  current = NULL;
 
   if (prev) {
     prev->next = NULL;
@@ -71,18 +73,24 @@ void print_list(node_t *head) {
 
 void *producer_func(void *input){
 
-  int r = rand()%5;
+  int r = rand()%500;
   while (1){
+    pthread_mutex_lock(&p_lock);
     enqueue((node_t **)input);
-    sleep(r);
+    
+    usleep(r);
+    pthread_mutex_unlock(&p_lock);
   }
 }
 
 void *consumer_func(void *input) {
-  int r = rand()%5;
+  int r = rand()%500;
   while (1) {
+    pthread_mutex_lock(&c_lock);
     dequeue((node_t **)input);
-    sleep(r);
+    
+    usleep(r);
+    pthread_mutex_unlock(&c_lock);
   }
 }
 
@@ -90,6 +98,13 @@ node_t * head = NULL;
 
 
 int main() {
+
+  printf("START!!!!\n");
+
+  if ( ( ( pthread_mutex_init(&p_lock, NULL)) && (pthread_mutex_init(&c_lock, NULL)) ) != 0){
+        printf("\n mutex init failed\n");
+        return 1;
+  }
 
   srand(time(NULL));
   pthread_t producer_1, producer_2, producer_3, producer_4;
@@ -111,6 +126,9 @@ int main() {
     sleep(1);
     printf("Queue size:%d\n",queue_size(head));
   }
+
+  pthread_mutex_destroy(&p_lock);
+  pthread_mutex_destroy(&c_lock);
   
   return 0;
 }

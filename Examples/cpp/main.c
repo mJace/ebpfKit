@@ -120,9 +120,9 @@ int main() {
   
 
   while( 1 ) {
-    print_list(head);
+    // print_list(head);
     sleep(1);
-    printf("Queue size:%d\n",queue_size(head));
+    // printf("Queue size:%d\n",queue_size(head));
   }
 
   pthread_mutex_destroy(&p_lock);

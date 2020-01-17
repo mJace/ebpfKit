@@ -8,7 +8,7 @@ You can even know the exact thread that produce or comsumes the same data.
 ## Requirement  
 
 1. bpftrace  
-   [Check environment preparation for installation.](https://www.github.com/mjace/ebpfKit/docs/prepare.md)
+   [Check environment preparation for installation.](https://www.github.com/mjace/ebpfKit/blob/master/docs/prepare.md)
 
 ## Steps  
 

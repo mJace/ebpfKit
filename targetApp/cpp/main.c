@@ -17,25 +17,25 @@ int queue_size(node_t *head) {
   node_t *current = head;
   int size = 0;
   while (current != NULL) {
-    // printf("%d\n", current->val);
     size++;
     current = current->next;
   }
   return size;
 }
 
-void enqueue(node_t **head) {
+int enqueue(node_t **head) {
   if ( ( queue_size(*head) ) == maxQueue ) {
-    return;
+    return -1;
   }
   int r = rand()%100;
   node_t *new_node = malloc(sizeof(node_t));
   if (!new_node) {
-    return;
+    return -1;
   }
   new_node->val = r;
   new_node->next = *head;
   *head = new_node;
+  return r;
 }
 
 int dequeue(node_t **head) {
@@ -76,10 +76,9 @@ void *producer_func(void *input){
   int r = rand()%500;
   while (1){
     pthread_mutex_lock(&p_lock);
-    enqueue((node_t **)input);
-    
-    usleep(r);
+    int tmp = enqueue((node_t **)input);
     pthread_mutex_unlock(&p_lock);
+    usleep(r);
   }
 }
 
@@ -88,9 +87,8 @@ void *consumer_func(void *input) {
   while (1) {
     pthread_mutex_lock(&c_lock);
     dequeue((node_t **)input);
-    
-    usleep(r);
     pthread_mutex_unlock(&c_lock);
+    usleep(r);
   }
 }
 

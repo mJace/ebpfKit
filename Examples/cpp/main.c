@@ -73,22 +73,22 @@ void print_list(node_t *head) {
 
 void *producer_func(void *input){
 
-  int r = rand()%500;
+  int r = rand()%5;
   while (1){
     pthread_mutex_lock(&p_lock);
     int tmp = enqueue((node_t **)input);
     pthread_mutex_unlock(&p_lock);
-    usleep(r);
+    sleep(r);
   }
 }
 
 void *consumer_func(void *input) {
-  int r = rand()%500;
+  int r = rand()%5;
   while (1) {
     pthread_mutex_lock(&c_lock);
     dequeue((node_t **)input);
     pthread_mutex_unlock(&c_lock);
-    usleep(r);
+    sleep(r);
   }
 }
 
@@ -120,9 +120,9 @@ int main() {
   
 
   while( 1 ) {
-    // print_list(head);
+    print_list(head);
     sleep(1);
-    // printf("Queue size:%d\n",queue_size(head));
+    printf("Queue size:%d\n",queue_size(head));
   }
 
   pthread_mutex_destroy(&p_lock);
